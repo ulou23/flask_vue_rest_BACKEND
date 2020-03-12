@@ -35,7 +35,7 @@ def remove_url(url_id):
     for u in URLS:
         if u['id'] == url_id:
             URLS.remove(u)
-            return True
+            return URLS  #wczesniej bylo tu True i nie dzialalo
     return False
 
 #####REST API HTTP METHODS
@@ -55,7 +55,7 @@ def all_urls():
     return jsonify(response_object)
 
 
-@app.route('/urls/<url_id>', methods=['PUT'])
+@app.route('/urls/<url_id>', methods=['PUT', 'DELETE'])
 def single_url(url_id):
     response_object = {'status': 'success'}
     if request.method == 'PUT':
@@ -66,6 +66,9 @@ def single_url(url_id):
             'urlinput': post_data.get('urlinput')
         })
         response_object['message'] = 'URL updated!'
+    if request.method == 'DELETE':
+        remove_url(url_id)
+        response_object['message'] = 'URL removed!'
     return jsonify(response_object)
 
 
