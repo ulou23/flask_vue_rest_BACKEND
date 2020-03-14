@@ -2,6 +2,8 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import uuid
 
+from flask_mail import Mail, Message
+
 # configuration
 DEBUG = True
 
@@ -9,6 +11,16 @@ DEBUG = True
 app = Flask(__name__)
 app.config.from_object(__name__)
 
+#mail config
+app.config['SECRET_KEY'] = ''
+app.config['MAIL_SERVER'] = ''
+app.config['MAIL_PORT'] = ''
+app.config['MAIL_USE_TLS'] = ''
+app.config['MAIL_USERNAME'] = ''
+app.config['MAIL_PASSWORD'] = ''
+app.config['MAIL_DEFAULT_SENDER'] =''
+
+mail=Mail(app)
 # enable CORS
 CORS(app, resources={r'/*': {'origins': '*'}})
 
@@ -30,6 +42,23 @@ URLS = [
         'urlinput': 'https://onet.pl',
     }
 ]
+
+####MAIL
+@app.route('/send',methods=['GET','POST'])
+def send():
+    response_object ={'status': "success"}
+    if request.method == 'POST':
+        recipient = request.get_data(as_text=True)
+        print(recipient)# json i wtedy ...send : tresc
+        #msg = Message('Your Urls', recipients=[recipient['mail']])
+        # msg.html('<h1>ooooo<h2>')
+        #mail.send(msg)
+        response_object['message'] = 'Mail sended'
+    else:
+        response_object['message'] = 'Maila Error'
+    return response_object
+
+
 
 def remove_url(url_id):
     for u in URLS:
