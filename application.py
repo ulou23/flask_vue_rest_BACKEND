@@ -61,12 +61,13 @@ def send():
 def create_tables():
     db.create_all()
 
-def remove_url(url_id):
-    for u in URLS:
-        if u['id'] == url_id:
-            URLS.remove(u)
-            return URLS  #wczesniej bylo tu True i nie dzialalo
-    return False
+#def remove_url(url_id):
+#    for u in URLS:
+#        if u['id'] == url_id:
+#            URLS.remove(u)
+#            return URLS  #wczesniej bylo tu True i nie dzialalo
+#    return False
+
 
 #####REST API HTTP METHODS
 
@@ -104,22 +105,47 @@ def CREATE():
 
 
 
+#@app.route('/urls/<url_id>', methods=['PUT', 'DELETE'])
+#def single_url(url_id):
+#    response_object = {'status': 'success'}
+#    if request.method == 'PUT':
+#        post_data = request.get_json()
+#        remove_url(url_id)
+#        URLS.append({
+#            'id': uuid.uuid4().hex,
+#            'urlinput': post_data.get('urlinput')
+#        })
+#        response_object['message'] = 'URL updated!'
+#    if request.method == 'DELETE':
+#        remove_url(url_id)
+#        response_object['message'] = 'URL removed!'
+#    return jsonify(response_object)
+
 @app.route('/urls/<url_id>', methods=['PUT', 'DELETE'])
 def single_url(url_id):
-    response_object = {'status': 'success'}
     if request.method == 'PUT':
-        post_data = request.get_json()
-        remove_url(url_id)
-        URLS.append({
-            'id': uuid.uuid4().hex,
-            'urlinput': post_data.get('urlinput')
-        })
-        response_object['message'] = 'URL updated!'
-    if request.method == 'DELETE':
-        remove_url(url_id)
-        response_object['message'] = 'URL removed!'
-    return jsonify(response_object)
+        post_data=request.get_json()
+        get_url=URLS.query.get(url_id)
+        if post_data.get('id'):
+            get_url.id = post_data['id']
+        if post_data.get('urlinput'):
+            get_url.urlinput = post_data['urlinput']
 
+        db.session.add(get_url)
+        db.session.commit()
+        url_schema=URLschema(only=['id', 'urlinput'])
+        url =url_schema.dump(get_url)
+        return make_response(jsonify({"url":url}))
+
+    if request.method == 'DELETE':
+        get_url=URLS.query.get(url_id)
+        db.session.delete(get_url)
+        db.session.commit()
+
+        get_urls=URLS.query.all()
+        url_schema = URLschema(many=True)
+        urls = url_schema.dump(get_urls)
+        return make_response(jsonify({"urls": urls}))
 
 
 
