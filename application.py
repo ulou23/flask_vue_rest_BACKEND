@@ -21,7 +21,7 @@ app.config['MAIL_SERVER'] = 'smtp.sendgrid.net'
 app.config['MAIL_PORT'] = 25
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = 'apikey'
-app.config['MAIL_PASSWORD'] = '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' #os.environ.get('SENDGRID_API_KEY')
+app.config['MAIL_PASSWORD'] = '' #os.environ.get('SENDGRID_API_KEY')
 app.config['MAIL_DEFAULT_SENDER'] = 'lousalome23@gmail.com'
 
 # enable CORS
