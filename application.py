@@ -49,9 +49,9 @@ def send():
         recipients = recipient['mail']
         print(recipients)
         msg = Message('YOUR URLS LIST', recipients=[recipients])
-        #urls=URLS.query.all()
+        urls=URLS.query.all()
         #url_schema = URLschema(many=True)
-
+        msg.body(urls)
         mail.send(msg)
         response_object['message'] = 'Maila Error'
     return response_object
