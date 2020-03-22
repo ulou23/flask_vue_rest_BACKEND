@@ -8,7 +8,7 @@ from flask_mail import Mail, Message
 
 from flask_sqlalchemy import SQLAlchemy
 
-# instantiate the app
+
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql+psycopg2://pswolsyqshnyxt:7087154f143fbb70a3c7f0c5e34ebb13deb5c5abc2d37adef4acd61cc7a5c360@ec2-79-125-2-142.eu-west-1.compute.amazonaws.com:5432/dfssnvstarnqsc"
