@@ -2,7 +2,17 @@
 
 # vueflaskapi     
 
-BACKEND https://github.com/ulou23/flask_vue_rest_BACKEND python Flask
+CAŁOŚĆ # flask_vue_rest_CRUD application
+
+
+#https://flaskvue.azurewebsites.net
+
+HTTP requests  API request methods > w pliku BACKEND 
+## application.py
+
+adres backendu AppService Osobno
+
+https://sendurlsback.azurewebsites.net/urls
 
 vue-flask-sqlalchem>-postgresql
 
@@ -37,6 +47,3 @@ npm run build
 
 ````
 Navigate to http://localhost:8080
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

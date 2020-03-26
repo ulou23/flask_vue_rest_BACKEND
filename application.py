@@ -21,7 +21,7 @@ app.config['SECRET_KEY'] = 'top-secret!'
 app.config['MAIL_SERVER'] = 'smtp.sendgrid.net'
 app.config['MAIL_PORT'] = 25
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'apikey'
+app.config['MAIL_USERNAME'] = 'azure_e3192891127d75b81cf5f2411881696d@azure.com'
 app.config['MAIL_PASSWORD'] = os.environ.get('SENDGRID_API_KEY')
 app.config['MAIL_DEFAULT_SENDER'] = 'lousalome23@gmail.com'
 
@@ -40,26 +40,7 @@ mail = Mail(app)
 #
 # ]
 
-####MAIL
-@app.route('/send', methods=['GET', 'POST'])
-def send():
-    response_object = {'status': "success"}
-    if request.method == 'POST':
-        recipient = request.get_json()
-        recipients = recipient['mail']
-        msg = Message('YOUR URLS LIST', recipients=[recipients])
-        urls=URLS.query.all()
-        url_schema = URLschema(many=True)
-        io=StringIO()
-        urli = url_schema.dump(urls)
-        url_str=json.dump(urli,io)
-        data=io.getvalue()
-        #url_schema = URLschema(many=True)
-        print(data)
-        msg.body=data
-        mail.send(msg)
-        response_object['message'] = 'Maila Error'
-    return response_object
+
 
 
 @app.before_first_request
@@ -115,6 +96,27 @@ def single_url(url_id):
         urls = url_schema.dump(get_urls)
         return make_response(jsonify({"urls": urls}))
 
+
+####MAIL
+@app.route('/send', methods=['GET', 'POST'])
+def send():
+    response_object = {'status': "success"}
+    if request.method == 'POST':
+        recipient = request.get_json()
+        recipients = recipient['mail']
+        msg = Message('YOUR URLS LIST', recipients=[recipients])
+        urls=URLS.query.all()
+        url_schema = URLschema(many=True)
+        io=StringIO()
+        urli = url_schema.dump(urls)
+        url_str=json.dump(urli,io)
+        data=io.getvalue()
+        #url_schema = URLschema(many=True)
+        print(data)
+        msg.body=data
+        mail.send(msg)
+        response_object['message'] = 'Maila Error'
+    return response_object
 
 if __name__ == '__main__':
     db.init_app(app)
