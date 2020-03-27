@@ -19,11 +19,20 @@ adres backendu AppService Osobno NA AZURE
  test wydajnościowy
  grupa 100 usersa na 100 sekund
  
- throughput > 
- GET 1.0/sec
- POST 1.0/sec
- PUT 1.0/sec
- DELETE  1.0/sec
+ throughput  Aggregate raport
+------------- 
+ GET     1.0/sec 
+ 
+ POST    1.0/sec
+ 
+ PUT    | 1.0/sec
+ 
+ DELETE | 1.0/sec
+ 
+ ![RESPONSE tIME](RESPONSETIME.png)
+
+najdłuzszy czas odpowiedzi ma żadanie POST Max 1004 ms
+average response time 304 ms
 
  Test Plan. 
 
@@ -31,18 +40,36 @@ adres backendu AppService Osobno NA AZURE
     Add → Sampler → HTTP Request – element odpowiedzialny za kliknięcie. Komponent generuje zapytanie GET / POST po protokole HTTP.
 
 ####the throughput
-WYDAJNOŚĆ  liczba żądań przetwarzanych na sekundę.
+WYDAJNOŚĆ  liczba żądań przetwarzanych na sekundę. 
+
+Graph Aggregate  daje wynik 241 request/ minute  nie jest to za dobry wynik
 ####deviation 
 Odchylenie standardowe określa ilościowo, jak długo czas odpowiedzi waha się wokół jego średniej.
  Nie zaleca się oceniania wydajności systemu na podstawie odchylenia standardowego. 
 Odchylenia powinny być minimalne, tj. Mniejsze niż 5%
+
+
 ####latency 
 Opóźnienie: liczba milisekund, które upłynęły między wysłaniem żądania przez JMeter a otrzymaniem wstępnej odpowiedzi
 ####sample time 
 liczba milisekund wymaganych przez serwer do pełnego obsłużenia żądania (response + latency)
+<listener > view in table  
+POST metoda ma najdłuższy sample time a DELETE NAJKROTSZY 
+
 ###how many users your application can handle 
 without scaling
 
 MAXIMUM LOAD SERVER =  RESPONSE TIME I RESPONSE ERROR
+oszacować max liczbe użytkowników, którzy jednocześnie użytkują aplikację - ilośc ruchu który może
+obsłużyć serwer
+- wydajność bazy danych 
+- liczba rdzeni procesora serwera na którym mamy postawioną aplikację
+- jaki czas CPU wykorzystuje do wygenerowania strony [ np. time to the first byte + the Content Dowload Time]
+
+wg google analythics formuła
+Number CPU cores / **Average time for a page request(in sec)** = max number of page request per sec
+Number of max request per sec * 60* click frequency (np. _moja aplikacja >> input w formularzu url'a_) of users in sec = Max  Number of simultaneius Users
+
+im dłuższy sredni czas odpowiedzi na request przy innych składnikach formuły stałych tym mniej użytkowników strona obsłuży
  
 ####response times &failing request
