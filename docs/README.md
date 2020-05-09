@@ -10,7 +10,8 @@ i osobno frontend - pod adresem https://flaskvue.azurewebsites.net [ środowisko
 ![rssapp](rssapp.png) 
 nie wdrożyłam bo w planie dla studentów jest limit 
 ![limit](limit.png)
-dlatego zdecydowałam się robić testy na pierwszej aplikacji, w ktorej prawidłowo działa API REST meody tylko zle szczytuje grafikę z rssow 
+
+##dlatego zdecydowałam się robić testy na pierwszej aplikacji, w ktorej prawidłowo działa API REST meody tylko zle szczytuje grafikę z rssow 
 ###https://flaskvue.azurewebsites.net
 INTERFACE KOD FRONTEND https://github.com/ulou23/flask_vue_rest_FRONT/
 
@@ -18,27 +19,49 @@ INTERFACE KOD FRONTEND https://github.com/ulou23/flask_vue_rest_FRONT/
 ## application.py
 KOD BACKEND https://github.com/ulou23/flask_vue_rest_BACKEND python Flask
 
-##TEST DOTYCZY API >>> 
-
-
+##TEST DOTYCZY API >>> Z raportu wynika że łącznie zostało wysłane 400 requestów do 4 zasobów
+100% wysłanych requestow dotarlo do serwera
 
 ###https://sendurlsback.azurewebsites.net/urls [DELETE i POST]
-
 ###https://sendurlsback.azurewebsites.net/urls/<id_url> [PUT I DELETE]
 
-# ANALIZA RAPORTU JMETER
+ŚREDNI CZAS ODPOWIEDZI 395 ms 
+NAJGORSZY CZAS MIALA TRANSAKCJA POST 757 ms , która dodaje do bazy url
+
+
+# ANALIZA RAPORTU JMETER [zadanie 3]
  test wydajnościowy
  grupa 100 usersa na 100 sekund
  
- throughput  Aggregate raport
+ przykład gdy wykonywały się testy request PUT
+ 
+ ![PUT](PUT.png)
+ 
+ throughput  Aggregate raport METODY - stworzenie funkcji która dodaje url  
+ 
+ ![jsonex](jsonex.png)
+ 
+ na jego podstawie w każdej metodzie operuje sie na zmiennej url ${url_id} i generacji linku  
+ 
+ ![urlid](urlid.png)
+ 
+ ![thread](thread.png)
+ 
 ------------- 
- GET     1.0/sec 
+
+ GET  (POBIERA LISTĘ URLÓW Z BAZY)   1.0/sec 
  
- POST    1.0/sec
+ POST  (dodaje do BAZY LINK)  1.0/sec
  
- PUT    | 1.0/sec
+ PUT (AKTUALIZUJE LINK -update)   | 1.0/sec
  
- DELETE | 1.0/sec
+ DELETE (USUWA Z BAZY LINK) | 1.0/sec
+ 
+ ![agg1](agg1.png)
+ 
+ ![agg2](agg2.png)
+ 
+ ![AggWykres](AggWykres.png)
  
  ![RESPONSE tIME](RESPONSETIME.png)
 
@@ -84,3 +107,12 @@ Number of max request per sec * 60* click frequency (np. _moja aplikacja >> inpu
 im dłuższy sredni czas odpowiedzi na request przy innych składnikach formuły stałych tym mniej użytkowników strona obsłuży
  
 ####response times &failing request
+
+
+## load testy  AZURE [zadanie 4]
+
+
+
+
+## Scaling Azure  [zadanie 5]
+NASZA SUBSKRYPCJA w tym momemcie odrzuca mozliwość postawienia testow na Azurze
