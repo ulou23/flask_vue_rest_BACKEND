@@ -1,18 +1,29 @@
 # flask_vue_rest_CRUD application
 
+APLIKACJA została postawiona na usłudze Azure App Service - osobno 
+Backend pod adresem https://sendurlsback.azurewebsites.net/ [środowisko uruchomieniowe z Pythonem 3.7]
+i osobno frontend - pod adresem https://flaskvue.azurewebsites.net [ środowisko uruchomieniowe node.js backend odpowiada na żadania przy pomocy biblioteki axios]
 
+![interfaceapp](interfaceapp.png)
+
+[RSS poprawnie odbierający feed jest w innej aplikacji pod adresem kod https://github.com/ulou23/rssdjango]
+![rssapp](rssapp.png) 
+nie wdrożyłam bo w planie dla studentów jest limit 
+![limit](limit.png)
+dlatego zdecydowałam się robić testy na pierwszej aplikacji, w ktorej prawidłowo działa API REST meody tylko zle szczytuje grafikę z rssow 
 ###https://flaskvue.azurewebsites.net
-INTERFACE DLA USER  KOD FRONTEND https://github.com/ulou23/flask_vue_rest_FRONT/
+INTERFACE KOD FRONTEND https://github.com/ulou23/flask_vue_rest_FRONT/
 
-HTTP requests  API request methods > w pliku BACKEND 
+### TESTY JMETER wykonane HTTP METODY requests API request methods > w pliku BACKEND 
 ## application.py
 KOD BACKEND https://github.com/ulou23/flask_vue_rest_BACKEND python Flask
 
-adres backendu AppService Osobno NA AZURE
-
 ##TEST DOTYCZY API >>> 
 
+
+
 ###https://sendurlsback.azurewebsites.net/urls [DELETE i POST]
+
 ###https://sendurlsback.azurewebsites.net/urls/<id_url> [PUT I DELETE]
 
 # ANALIZA RAPORTU JMETER
