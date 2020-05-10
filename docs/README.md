@@ -49,13 +49,13 @@ NAJGORSZY CZAS MIALA TRANSAKCJA POST 757 ms , która dodaje do bazy url
  
 ------------- 
 
- GET  (POBIERA LISTĘ URLÓW Z BAZY)   1.0/sec 
+ **GET**  (POBIERA LISTĘ URL'ÓW Z BAZY)   297 ms 
  
- POST  (dodaje do BAZY LINK)  1.0/sec
+ **POST**  (dodaje do BAZY LINK)  757 ms
  
- PUT (AKTUALIZUJE LINK -update)   | 1.0/sec
+ **PUT** (AKTUALIZUJE LINK -update)   266 ms
  
- DELETE (USUWA Z BAZY LINK) | 1.0/sec
+ **DELETE** (USUWA Z BAZY LINK) | 261 ms
  
  ![agg1](agg1.png)
  
@@ -65,8 +65,8 @@ NAJGORSZY CZAS MIALA TRANSAKCJA POST 757 ms , która dodaje do bazy url
  
  ![RESPONSE tIME](RESPONSETIME.png)
 
-najdłuzszy czas odpowiedzi ma żadanie POST Max 1004 ms
-average response time 304 ms
+***najdłuzszy czas odpowiedzi ma żadanie POST Max 9236 ms a minialny MIN 198ms***
+average response time ***395 ms***
 
  Test Plan. 
 
@@ -74,7 +74,7 @@ average response time 304 ms
     Add → Sampler → HTTP Request – element odpowiedzialny za kliknięcie. Komponent generuje zapytanie GET / POST po protokole HTTP.
 
 ####the throughput
-WYDAJNOŚĆ  liczba żądań przetwarzanych na sekundę. 
+WYDAJNOŚĆ  liczba żądań przetwarzanych na sekundę.  ***234,799/minute***
 
 Graph Aggregate  daje wynik 241 request/ minute  nie jest to za dobry wynik
 ####deviation 
@@ -88,7 +88,7 @@ Opóźnienie: liczba milisekund, które upłynęły między wysłaniem żądania
 ####sample time 
 liczba milisekund wymaganych przez serwer do pełnego obsłużenia żądania (response + latency)
 <listener > view in table  
-POST metoda ma najdłuższy sample time a DELETE NAJKROTSZY 
+***POST metoda ma najdłuższy sample time a DELETE NAJKROTSZY*** 
 
 ###how many users your application can handle 
 without scaling
@@ -109,10 +109,22 @@ im dłuższy sredni czas odpowiedzi na request przy innych składnikach formuły
 ####response times &failing request
 
 
-## load testy  AZURE [zadanie 4]
+## load testy  AZURE [zadanie 4] - NIESTETY moja subskrypcja nie pozwalała mi zrealizować kompletnie zadania
 
 
+![jmeter1](jmeter1.png)
 
+![jmeter2](jmeter2.png)
+
+![jmeterfail](jmeterazurefail.png)
+ 
+![jmeterfail](jmeterazure fail.png)
 
 ## Scaling Azure  [zadanie 5]
-NASZA SUBSKRYPCJA w tym momemcie odrzuca mozliwość postawienia testow na Azurze
+NASZA SUBSKRYPCJA  odrzuca mozliwość postawienia testow na Azurze
+
+![scaleup](scaleup1.png)
+
+![jmeterfail](scaleup2.png)
+
+![scaleup](scaleupfail.png)

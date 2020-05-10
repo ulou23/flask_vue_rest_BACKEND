@@ -7,14 +7,17 @@ CAŁOŚĆ # flask_vue_rest_CRUD application
 
 #https://flaskvue.azurewebsites.net
 
-HTTP requests  API request methods > w pliku BACKEND 
+HTTP requests  API request methods > w pliku BACKEND  
 ## application.py
+
+###analiza jmeter folder >>> docs
 
 adres backendu AppService Osobno
 
 https://sendurlsback.azurewebsites.net/urls
 
-vue-flask-sqlalchem>-postgresql
+BIBLIOTEKA sqlalchemy orm >-postgresql  
+[postawiona na **HEROKU** ze wzgledu  NA BRAK MOŻLIWOŚCI NA AZURE]
 
 ## For backend: 
 
